@@ -1,2 +1,2 @@
 # pipelinetest
-repository to test pipeline features
+repository to test github and other pipeline features

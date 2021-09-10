@@ -14,8 +14,10 @@ jobs:
     steps:
       - name: Install Crystal
         uses: oprypin/install-crystal@v1
-        with:
-          crystal: ${{ matrix.crystal }}
+        with: 
+          crystal: latest
+      
+      
       - uses: actions/checkout@v2
 
       - name: Install dependencies

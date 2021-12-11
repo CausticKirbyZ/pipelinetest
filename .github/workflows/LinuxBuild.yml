@@ -8,7 +8,7 @@ on:
 
 
 jobs:
-  build:
+  build-arch:
     runs-on: ubuntu-latest
     container: 
       image: archlinux
@@ -50,7 +50,47 @@ jobs:
         with:
           upload_url: ${{ steps.release.outputs.upload_url }}
           asset_path: ./helloworld
-          asset_name: helloworld-${{ github.event.release.tag_name }}-archlinux-x86_64
+          asset_name: helloworld-archlinux-x86_64
+          asset_content_type: binary/octet-stream
+
+
+  build-kali:
+    runs-on: ubuntu-latest
+    container: 
+      image: kalilinux/kali-rolling
+
+    steps:
+      - name: update docker
+        run: apt update -y && apt upgrade -y 
+      
+      - name: install dependancies 
+        run: apt install base-devel gcc make cmake openssl -y 
+
+      - name: install crystal 
+        run: curl -fsSL https://crystal-lang.org/install.sh | sudo bash
+      
+      
+      - uses: actions/checkout@v2
+
+      - name: Install shard dependencies
+        run: shards install
+        env:
+          SHARDS_OPTS: --ignore-crystal-version
+
+      - name: Build Project
+        run: crystal build helloworld.cr --release
+
+      - name: Bulid Project 2
+        run: crystal build helloworld2.cr
+
+      - name: Upload release asset - arch 
+        uses: actions/upload-release-asset@v1
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.release.outputs.upload_url }}
+          asset_path: ./helloworld
+          asset_name: helloworld-kali-linux-x86_64
           asset_content_type: binary/octet-stream
 
 

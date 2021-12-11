@@ -14,10 +14,10 @@ jobs:
       image: archlinux
 
     steps:
-      # - name: Install Crystal
-      #   uses: oprypin/install-crystal@v1
-      #   with: 
-      #     crystal: latest
+      - name: Install Crystal
+        uses: oprypin/install-crystal@v1
+        with: 
+          crystal: latest
       - name: update docker
         run: pacman -Syu --noconfirm
       

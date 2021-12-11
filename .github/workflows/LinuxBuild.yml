@@ -10,6 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # runs-on: archlinux-latest
 
     steps:
       - name: Install Crystal
@@ -27,3 +28,5 @@ jobs:
 
       - name: Build Project
         run: crystal build helloworld.cr
+      -name: Bulid Project 2
+        run: crystal build helloworld2.cr

@@ -8,18 +8,60 @@ on:
 
 
 jobs:
-  build-arch:
-    runs-on: ubuntu-latest
-    container: 
-      image: archlinux
+  # build-arch:
+  #   runs-on: ubuntu-latest
+  #   container: 
+  #     image: archlinux
 
+  #   steps:
+  #     - name: update docker
+  #       run: pacman -Syu --noconfirm
+      
+  #     - name: install dependancies 
+  #       run: pacman -S base-devel gcc make cmake openssl crystal shards --noconfirm
+      
+  #     - uses: actions/checkout@v2
+
+  #     - name: Install shard dependencies
+  #       run: shards install
+  #       env:
+  #         SHARDS_OPTS: --ignore-crystal-version
+
+  #     - name: Build Project
+  #       run: crystal build helloworld.cr --release
+
+  #     - name: Bulid Project 2
+  #       run: crystal build helloworld2.cr
+
+
+  #     - name: Create Git release
+  #       id: release
+  #       uses: actions/create-release@v1
+  #       env: 
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       with: 
+  #         tag_name: v${{ github.run_number }}
+  #         release_name: Release V${{ github.run_number }}
+
+  #     - name: Upload release asset - arch 
+  #       uses: actions/upload-release-asset@v1
+  #       env: 
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       with:
+  #         upload_url: ${{ steps.release.outputs.upload_url }}
+  #         asset_path: ./helloworld
+  #         asset_name: helloworld-archlinux-x86_64
+  #         asset_content_type: binary/octet-stream
+
+
+  build-kali:
+    runs-on: ubuntu-latest
     steps:
-      - name: update docker
-        run: pacman -Syu --noconfirm
-      
-      - name: install dependancies 
-        run: pacman -S base-devel gcc make cmake openssl crystal shards --noconfirm
-      
+      - uses: actions/checkout@v2
+      - uses: crystal-lang/install-crystal@v1
+        with:
+          crystal: latest
+
       - uses: actions/checkout@v2
 
       - name: Install shard dependencies
@@ -32,6 +74,9 @@ jobs:
 
       - name: Bulid Project 2
         run: crystal build helloworld2.cr
+
+
+
 
 
       - name: Create Git release
@@ -50,47 +95,44 @@ jobs:
         with:
           upload_url: ${{ steps.release.outputs.upload_url }}
           asset_path: ./helloworld
-          asset_name: helloworld-archlinux-x86_64
+          asset_name: helloworld-debian-based-linux-x86_64
           asset_content_type: binary/octet-stream
 
-
-  build-kali:
-    runs-on: ubuntu-latest
-    container: 
-      image: kalilinux/kali-rolling
+    # container: 
+    #   image: kalilinux/kali-rolling
     
 
-    steps:
-      - name: update docker
-        run: apt update -y && apt upgrade -y 
+    # steps:
+    #   - name: update docker
+    #     run: apt update -y && apt upgrade -y 
       
-      - name: install dependancies 
-        run: apt install curl build-essential gcc make cmake libssl-dev -y 
+    #   - name: install dependancies 
+    #     run: apt install curl build-essential gcc make cmake libssl-dev -y 
 
-      - name: Install Crystal
-        run: curl -fsSL https://crystal-lang.org/install.sh | bash
+    #   - name: Install Crystal
+    #     run: curl -fsSL https://crystal-lang.org/install.sh | bash
       
-      - uses: actions/checkout@v2
+    #   - uses: actions/checkout@v2
 
-      - name: Install shard dependencies
-        run: shards install
-        env:
-          SHARDS_OPTS: --ignore-crystal-version
+    #   - name: Install shard dependencies
+    #     run: shards install
+    #     env:
+    #       SHARDS_OPTS: --ignore-crystal-version
 
-      - name: Build Project
-        run: crystal build helloworld.cr --release
+    #   - name: Build Project
+    #     run: crystal build helloworld.cr --release
 
-      - name: Bulid Project 2
-        run: crystal build helloworld2.cr
+    #   - name: Bulid Project 2
+    #     run: crystal build helloworld2.cr
 
-      - name: Upload release asset - arch 
-        uses: actions/upload-release-asset@v1
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.release.outputs.upload_url }}
-          asset_path: ./helloworld
-          asset_name: helloworld-kali-linux-x86_64
-          asset_content_type: binary/octet-stream
+    #   - name: Upload release asset - arch 
+    #     uses: actions/upload-release-asset@v1
+    #     env: 
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     with:
+    #       upload_url: ${{ steps.release.outputs.upload_url }}
+    #       asset_path: ./helloworld
+    #       asset_name: helloworld-kali-linux-x86_64
+    #       asset_content_type: binary/octet-stream
 
 

@@ -27,5 +27,3 @@ jobs:
 
       - name: Build Project
         run: crystal build helloworld.cr
-      -name: Bulid Project 2
-        run: crystal build helloworld2.cr --release --no-debug

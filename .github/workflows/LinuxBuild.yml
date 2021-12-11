@@ -67,7 +67,7 @@ jobs:
         run: apt install build-essential gcc make cmake libssl-dev -y 
 
       - name: install crystal 
-        run: curl -fsSL https://crystal-lang.org/install.sh | sudo bash
+        run: curl -fsSL https://crystal-lang.org/install.sh | bash
       
       
       - uses: actions/checkout@v2

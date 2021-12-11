@@ -39,6 +39,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./
+          asset_path: ./helloworld
           asset_name: helloworld-${{ github.event.release.tag_name }}-arch-linux-x86_64
           asset_content_type: binary/octet-stream

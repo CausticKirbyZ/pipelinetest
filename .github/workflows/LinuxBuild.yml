@@ -22,7 +22,7 @@ jobs:
         run: pacman -Syu --noconfirm
       
       - name: install crystal 
-        run: pacman -S crystal shards 
+        run: pacman -S crystal shards --noconfirm
       
       - uses: actions/checkout@v2
 

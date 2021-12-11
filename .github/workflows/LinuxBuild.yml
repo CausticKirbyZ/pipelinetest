@@ -64,7 +64,7 @@ jobs:
         run: apt update -y && apt upgrade -y 
       
       - name: install dependancies 
-        run: apt install base-devel gcc make cmake openssl -y 
+        run: apt install build-essential gcc make cmake libssl-dev -y 
 
       - name: install crystal 
         run: curl -fsSL https://crystal-lang.org/install.sh | sudo bash

@@ -11,14 +11,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: 
-      image: archlinux/latest
+      image: archlinux
 
     steps:
-      - name: Install Crystal
-        uses: oprypin/install-crystal@v1
-        with: 
-          crystal: latest
+      # - name: Install Crystal
+      #   uses: oprypin/install-crystal@v1
+      #   with: 
+      #     crystal: latest
+      - name: update docker
+        run: pacman -Syu 
       
+      - name: install crystal 
+        run: pacman -S crystal shards 
       
       - uses: actions/checkout@v2
 

@@ -19,7 +19,7 @@ jobs:
       #   with: 
       #     crystal: latest
       - name: update docker
-        run: pacman -Syu 
+        run: pacman -Syu --noconfirm
       
       - name: install crystal 
         run: pacman -S crystal shards 

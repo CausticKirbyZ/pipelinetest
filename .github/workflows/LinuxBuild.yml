@@ -10,8 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # runs-on: archlinux-latest
-
+    
     steps:
       - name: Install Crystal
         uses: oprypin/install-crystal@v1
@@ -30,4 +29,3 @@ jobs:
         run: crystal build helloworld.cr
       -name: Bulid Project 2
         run: crystal build helloworld2.cr --release --no-debug
-        

@@ -58,16 +58,17 @@ jobs:
     runs-on: ubuntu-latest
     container: 
       image: kalilinux/kali-rolling
+    
 
     steps:
-      - name: update docker
-        run: apt update -y && apt upgrade -y 
+     - uses: crystal-lang/install-crystal@v1
+        with:
+          crystal: 1.2
+      # - name: update docker
+      #   run: apt update -y && apt upgrade -y 
       
-      - name: install dependancies 
-        run: apt install build-essential gcc make cmake libssl-dev -y 
-
-      - name: install crystal 
-        run: curl -fsSL https://crystal-lang.org/install.sh | bash
+      # - name: install dependancies 
+      #   run: apt install build-essential gcc make cmake libssl-dev -y 
       
       
       - uses: actions/checkout@v2

@@ -61,9 +61,9 @@ jobs:
     
 
     steps:
-     - uses: crystal-lang/install-crystal@v1
+      - uses: crystal-lang/install-crystal@v1
         with:
-          crystal: 1.2
+          crystal: latest
       # - name: update docker
       #   run: apt update -y && apt upgrade -y 
       

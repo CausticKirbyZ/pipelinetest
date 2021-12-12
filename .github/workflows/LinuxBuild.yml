@@ -54,7 +54,7 @@ jobs:
           # upload_url: ${{ steps.release.outputs.upload_url }}
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./helloworld
-          # asset_name: helloworld-archlinux-x86_64
+          asset_name: helloworld-archlinux-x64
           asset_content_type: binary/octet-stream
 
 
@@ -79,15 +79,6 @@ jobs:
       - name: Bulid Project 2
         run: crystal build helloworld2.cr
 
-      - name: Create Git release
-        id: release
-        uses: actions/create-release@v1
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with: 
-          tag_name: v${{ github.run_number }}
-          release_name: Release V${{ github.run_number }}
-
       - name: Upload release asset - arch 
         uses: actions/upload-release-asset@v1
         env: 
@@ -96,7 +87,7 @@ jobs:
           # upload_url: ${{ steps.release.outputs.upload_url }}
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./helloworld
-          asset_name: helloworld-debian-based-linux-x86_64
+          asset_name: helloworld-debian-based-linux-x64
           asset_content_type: binary/octet-stream
 
 

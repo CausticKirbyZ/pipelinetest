@@ -54,7 +54,7 @@ jobs:
           # upload_url: ${{ steps.release.outputs.upload_url }}
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./helloworld
-          asset_name: helloworld-archlinux-x64
+          asset_name: helloworld-debian-based-linux-x64
           asset_content_type: binary/octet-stream
  
 
